@@ -1,16 +1,16 @@
 <?php require("PHPMailer/PHPMailerAutoload.php");
 
 // ADD your Email and Name
-$recipientEmail='admin@Magma.com';
-$recipientName='John Doe';
+$recipientEmail='ethomas@phyllissoftware.com';
+$recipientName='Elijah Thomas';
 
 //collect the posted variables into local variables before calling $mail = new mailer
 
 $senderName = $_POST['contact-name'];
 $senderPhone = $_POST['contact-phone'];
 $senderEmail= $_POST['contact-email'];
-$senderSubject = 'New Message From ' . $senderName;
-
+$senderSubject = 'New client request from ' . $senderName;
+$senderMessage = $_POST['contact-message'];
 //Create a new PHPMailer instance
 $mail = new PHPMailer();
 
@@ -37,6 +37,7 @@ $message .= '<table rules="all" style="border:1px solid #666;width:300px;" cellp
 $message .= ($senderName) ? "<tr style='background: #eee;'><td><strong>Name:</strong> </td><td>" . $senderName . "</td></tr>" : '';
 $message .= ($senderPhone) ?"<tr><td><strong>Phone:</strong> </td><td>" . $senderPhone . "</td></tr>" : '';
 $message .= ($senderEmail) ?"<tr><td><strong>Email:</strong> </td><td>" . $senderEmail . "</td></tr>" : '';
+$message .= ($senderMessage) ? "<tr><td><strong>Message:</strong> </td><td>" . nl2br($senderMessage) . "</td></tr>" : '';
 $message .= "</table>";
 $message .= "</body></html>";
 
